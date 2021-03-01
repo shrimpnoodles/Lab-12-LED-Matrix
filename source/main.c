@@ -37,7 +37,7 @@ int rectangle1_Tick(int state){
 		  //     pc_temp = 0x3c;
 	    
 			PORTC = 0X3C;
-			PORTD =0XDF;
+			PORTD =0XD7;
 			break;
 	 	default:
 			break;
@@ -69,50 +69,6 @@ int rectangle2_Tick(int state){
 	return state;
 }
 
-enum rectangle3_States{ out_r3};
-
-int rectangle3_Tick(int state){
-	switch(state){
-		case out_r3:
-			break;
-		default:
-			state = out_r3;
-			break;
-		}
-	switch(state){
-		case out_r3:
-		//	pd_temp = 0xf7;
-		//	pc_temp = 0x3c;
-
-			PORTC = 0X3C;
-			PORTD = 0XF7;
-			break;
-		default:
-			break;
-	}
-	return state;
-}
-
-/*enum output_States{ output};
-
-int output_Tick(int state){
-	switch(state){
-		case output:
-			break;
-		default:
-			state = output;
-			break;
-		}
-	switch(state){
-		case output:
-	//		PORTD = pd_temp;
-	//		PORTC = pc_temp;
-			break;
-		default:
-			break;
-	}
-	return state;
-}*/
 
 int main(void) {
     /* Insert DDR and PORT initializations */
@@ -120,8 +76,8 @@ int main(void) {
 	DDRC = 0Xff; PORTC = 0X00;
 	DDRD = 0Xff; PORTD = 0X00;
     /* Insert your solution below */
-	static task task1, task2, task3;//, task4;
-	task *tasks[] = {&task1, &task2, &task3};//, &task4};
+	static task task1, task2;//, task3;//, task4;
+	task *tasks[] = {&task1, &task2};//, &task3};//, &task4};
 const unsigned short numTasks = sizeof(tasks)/sizeof(task*);
 
 	const char start = -1;
@@ -136,11 +92,11 @@ const unsigned short numTasks = sizeof(tasks)/sizeof(task*);
 	task2.elapsedTime = task2.period;
 	task2.TickFct = &rectangle2_Tick;
 
-	task3.state = start;
+/*	task3.state = start;
 	task3.period =1;
 	task3.elapsedTime = task3.period;
 	task3.TickFct = &rectangle3_Tick;
-
+*/
 /*	task4.state = start;
 	task4.period = 1;
 	task4.elapsedTime = task4.period;
